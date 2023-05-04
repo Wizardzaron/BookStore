@@ -39,4 +39,15 @@ Install the required packages in activated environment
 pip install -r requirements.txt
 ```
 
+Start the server
+```shell
+# activate the environment
+uvicorn bookstore:app --reload
+```
+
+Open bookstore API docs
+```shell
+http://127.0.0.1:8000/docs
+```
+
 [Notes](/NOTES.md)
