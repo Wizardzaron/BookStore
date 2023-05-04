@@ -5,6 +5,12 @@ Team Members (Group 17):
 - Daisy Catalan
 - Ryan Haddadi
 
+Tech Stack
+- Python 3.7 or greater
+- FastAPI
+- MongoDB
+- Pydantic
+
 # Get Started
 
 Create an environment
@@ -32,4 +38,5 @@ Install the required packages in activated environment
 # activate environment
 pip install -r requirements.txt
 ```
-(TO DO: still need to make requirements.txt)
+
+[Notes](/NOTES.md)
