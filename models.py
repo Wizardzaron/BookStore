@@ -7,8 +7,8 @@ class Book(BaseModel):
     title: str = Field(...)
     author: str = Field(...)
     description: str = Field(...)
-    price: float = Field(...)
-    stock: int = Field(...)
+    price: float = Field(..., ge=0.0)
+    stock: int = Field(..., ge=0)
 
     class Config:
         allow_population_by_field_name = True
