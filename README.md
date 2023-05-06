@@ -6,7 +6,7 @@ Team Members (Group 17):
 - Ryan Haddadi
 
 Tech Stack
-- Python 3.7 or greater
+- Python 3.9+ (Specificically using Python 3.10.6)
 - FastAPI
 - MongoDB
 - Pydantic
@@ -45,9 +45,7 @@ Start the server
 uvicorn bookstore:app --reload
 ```
 
-Open bookstore API docs
-```shell
-http://127.0.0.1:8000/docs
-```
+Open bookstore API docs: http://127.0.0.1:8000/docs
+
 
 [Notes](/NOTES.md)
