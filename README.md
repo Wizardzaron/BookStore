@@ -6,7 +6,7 @@ Team Members (Group 17):
 - Ryan Haddadi
 
 Tech Stack
-- Python 3.9+ (Specificically using Python 3.10.6)
+- Python 3.9+ (Specifically using Python 3.10.6)
 - FastAPI
 - MongoDB
 - Pydantic
