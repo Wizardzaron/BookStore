@@ -5,6 +5,12 @@ Team Members (Group 17):
 - Daisy Catalan
 - Ryan Haddadi
 
+Tech Stack
+- Python 3.9+ (Specifically using Python 3.10.6)
+- FastAPI
+- MongoDB
+- Pydantic
+
 # Get Started
 
 Create an environment
@@ -32,4 +38,14 @@ Install the required packages in activated environment
 # activate environment
 pip install -r requirements.txt
 ```
-(TO DO: still need to make requirements.txt)
+
+Start the server
+```shell
+# activate the environment
+uvicorn bookstore:app --reload
+```
+
+Open bookstore API docs: http://127.0.0.1:8000/docs
+
+
+[Notes](/NOTES.md)

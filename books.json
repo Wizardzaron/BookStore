@@ -1,0 +1,218 @@
+[{
+  "_id": "f488274f-d402-464d-8982-f60e2b612c2f",
+  "title": "Outlive: The Science and Art of Longevity",
+  "author": "Peter Attia",
+  "description": "A look at recent scientific research on aging and longevity.",
+  "price": 18.99,
+  "stock": 0
+},{
+  "_id": "1922f862-00fa-488d-9632-9d6b94e26fbb",
+  "title": "I'm Glad My Mom Died",
+  "author": "Jennette McCurdy",
+  "description": "The actress and filmmaker describes her eating disorders and difficult relationship with her mother.",
+  "price": 17.73,
+  "stock": 49115
+},{
+  "_id": "3968c654-87dc-4f70-b4b1-02ebc98e9ede",
+  "title": "Spare",
+  "author": "Prince Harry",
+  "description": "The Duke of Sussex details his struggles with the royal family, loss of his mother, service in the British Army and marriage to Meghan Markle.",
+  "price": 19.99,
+  "stock": 69737
+},{
+  "_id": "7f7553a3-96b5-49fe-a6fd-84acff2bf7bb",
+  "title": "Choosing to Run",
+  "author": "Des Linden",
+  "description": "The Boston Marathon winner and Olympian shares her racing highlights and training methods.",
+  "price": 24.36,
+  "stock": 356
+},{
+  "_id": "1d56c7ba-dc18-4fda-b588-0b042e6ac668",
+  "title": "Poverty, by America",
+  "author": "Matthew Desmond",
+  "description": "The Boston Marathon winner and Olympian shares her racing highlights and training methods.",
+  "price": 24.36,
+  "stock": 356
+},{
+  "_id": "b84cfc83-a4eb-4ccb-b13b-1e5eab742fef",
+  "title": "Got Your Number",
+  "author": "Mike Greenberg",
+  "description": "The ESPN host partners with his producer to create their list of top 100 sports legends.",
+  "price": 20.88,
+  "stock": 121
+},{
+  "_id": "1562d025-9524-4b44-aa69-724d9d63bba5",
+  "title": "The Light We Carry",
+  "author": "Michelle Obama",
+  "description": "The former first lady shares personal stories and the tools she uses to deal with difficult situations.",
+  "price": 18.48,
+  "stock": 8470
+},{
+  "_id": "c3d8ae21-600e-495f-bcbd-26df29015520",
+  "title": "Walk the Blue Line",
+  "author": "James Patterson",
+  "description": "A collection of stories about police officers.",
+  "price": 13,
+  "stock": 1394
+},{
+  "_id": "8cacc093-5aa3-47a9-aed3-ae8769853fe1",
+  "title": "Saved",
+  "author": "Benjamin Hall",
+  "description": "The Fox News journalist gives his account of the injuries he sustained from a Russian attack while covering the war in Ukraine.",
+  "price": 20.99,
+  "stock": 2342
+},{
+  "_id": "2cffd7ec-60dd-42dd-a52b-55930a424f82",
+  "title": "A Fever in the Heartland",
+  "author": "Timothy Egan",
+  "description": "The Pulitzer and National Book Award-winning author details the Ku Klux Klan's rise to the height of its power in the 1920s and how one brutalized woman’s testimony diminished it.",
+  "price": 22.68,
+  "stock": 350
+},{
+  "_id": "e3e8769f-5257-493c-a4b2-8ba9f0f57c3d",
+  "title": "Follow Me to Hell",
+  "author": "Tom Clavin",
+  "description": "A portrayal of a ranger named Leander McNelly and his men in 1870s Texas.",
+  "price": 17.99,
+  "stock": 62
+},{
+  "_id": "42bbb95c-a107-4922-9e0a-bcd0824019bf",
+  "title": "Greenlights",
+  "author": "Matthew McConaughey",
+  "description": "The Academy Award-winning actor shares snippets from the diaries he kept over 35 years.",
+  "price": 15.68,
+  "stock": 63294
+},{
+  "_id": "37a09e2a-515c-4055-9a7c-2b56026b901f",
+  "title": "It's OK to Be Angry About Capitalism",
+  "author": "Bernie Sanders",
+  "description": "The Vermont senator depicts the impact capitalism has on key areas of our lives and ways to address this.",
+  "price": 17.89,
+  "stock": 587
+},{
+  "_id": "a89f754e-e53f-47f0-989e-a7cf298a6745",
+  "title": "Paris",
+  "author": "Paris Hilton",
+  "description": "The entrepreneur and pop culture icon shares her personal and professional rise in the age of influencers.",
+  "price": 18.53,
+  "stock": 936
+},{
+  "_id": "b43f386b-151e-4d0a-a85e-d34876c58ef0",
+  "title": "To Kill a Mockingbird",
+  "author": "Harper Lee",
+  "description": "Harper Lee's Pulitzer Prize-winning masterwork of honor and injustice in the deep South—and the heroism of one man in the face of blind and violent hatred.",
+  "price": 8.89,
+  "stock": 128809
+},{
+  "_id": "4c7e6730-9719-4b2d-814d-71bbbe49879f",
+  "title": "The Fellowship of the Ring",
+  "author": "J.R.R. Tolkien",
+  "description": "One Ring to rule them all, One Ring to find them, One Ring to bring them all and in the darkness bind them.",
+  "price": 9.28,
+  "stock": 20519
+},{
+  "_id": "8ee61630-618b-49fc-9474-252bbf02eb08",
+  "title": "The Grapes of Wrath",
+  "author": "John Steinbeck",
+  "description": "The Pulitzer Prize-winning epic of the Great Depression, a book that galvanized—and sometimes outraged—millions of readers",
+  "price": 12.29,
+  "stock": 19431
+},{
+  "_id": "f491a477-a8d9-4f4f-a250-96e250964ba1",
+  "title": "East of Eden",
+  "author": "John Steinbeck",
+  "description": "A masterpiece of Biblical scope, and the magnum opus of one of America’s most enduring authors",
+  "price": 15.99,
+  "stock": 21371
+},{
+  "_id": "1a2ee669-4aa2-4e94-a8b5-0971b96f0499",
+  "title": "The Pearl",
+  "author": "John Steinbeck",
+  "description": "There it lay, the great pearl, perfect as the moon.",
+  "price": 10.59,
+  "stock": 5892
+},{
+  "_id": "50e25782-459d-4d52-823b-56431c6bae5a",
+  "title": "Cannery Row",
+  "author": "John Steinbeck",
+  "description": "First published in 1945, Cannery Row focuses on the acceptance of life as it is—both the exuberance of community and the loneliness of the individual.",
+  "price": 9.99,
+  "stock": 7446
+},{
+  "_id": "112357e1-57b2-4d5f-b9ed-30fff1d5b150",
+  "title": "The Winter of Our Discontent",
+  "author": "John Steinbeck",
+  "description": "The final novel of one of America’s most beloved writers - a tale of degeneration, corruption, and spiritual crisis.",
+  "price": 14.99,
+  "stock": 3021
+},{
+  "_id": "e5b2d538-7768-4d43-8cb7-dca97a1ea5a6",
+  "title": "The Old Man and The Sea",
+  "author": "Ernest Hemingway",
+  "description": "It tells the story of an aging fisherman, Santiago, who has gone 84 days without catching a fish. On the 85th day, he sets out to sea and catches a giant marlin, but his struggle to bring the fish back to shore becomes a grueling battle against the elements and against sharks who attack the marlin. The novella is set in Cuba and explores themes such as perseverance, strength, and the relationship between humans and nature. It is a meditation on the human condition and the struggle to maintain one's dignity in the face of defeat and adversity.",
+  "price": 7.89,
+  "stock": 37054
+},{
+  "_id": "6a535462-9401-43c4-93f4-1c1c4acb3fc9",
+  "title": "For Whom the Bell Tolls",
+  "author": "Ernest Hemingway",
+  "description": "Ernest Hemingway's masterpiece on war, love, loyalty, and honor tells the story of Robert Jordan, an antifascist American fighting in the Spanish Civil War.",
+  "price": 12.79,
+  "stock": 10085
+},{
+  "_id": "fca51616-8510-412f-9b82-8c6a40a4740a",
+  "title": "The Sound and the Fury",
+  "author": "William Faulkner",
+  "description": "One of the greatest novels of the twentieth century is the story of a family of Southern aristocrats on the brink of personal and financial ruin.",
+  "price": 11.99,
+  "stock": 2384
+},{
+  "_id": "1ac4e3f7-1353-44c6-97fd-11d70435ee95",
+  "title": "As I Lay Dying",
+  "author": "William Faulkner",
+  "description": "Faulkner’s famed harrowing account of the Bundren family’s odyssey across the Mississippi countryside to bury Addie, their wife and mother.",
+  "price": 10.89,
+  "stock": 2339
+},{
+  "_id": "24864e81-e6a3-4bb2-af3e-659a609fee0b",
+  "title": "Mrs. Dalloway",
+  "author": "Virginia Woolf",
+  "description": "In this vivid portrait of a single day in a woman’s life, Mrs. Clarissa Dalloway is preoccupied with the last-minute details of preparation for a party while in her mind she is something much more than a perfect society hostess.",
+  "price": 8.49,
+  "stock": 4016
+},{
+  "_id": "08919e79-7b11-4e67-9630-ab939bdb0a06",
+  "title": "To The Lighthouse",
+  "author": "Virginia Woolf",
+  "description": "The novel centres on the Ramsay family and their visits to the Isle of Skye in Scotland between 1910 and 1920.",
+  "price": 10.29,
+  "stock": 3046
+},{
+  "_id": "82e2503d-e8d6-409e-bb2f-f86a7ccdc1ec",
+  "title": "The Year of Magical Thinking",
+  "author": "Joan Didion",
+  "description": "From one of America’s iconic writers, a stunning book of electric honesty and passion that explores an intensely personal yet universal experience: a portrait of a marriage—and a life, in good times and bad—that will speak to anyone who has ever loved a husband or wife or child.",
+  "price": 11.71,
+  "stock": 10495
+},{
+  "_id": "4514d052-dbf5-4d81-9235-86e00eb76dea",
+  "title": "White Album",
+  "author": "Joan Didion",
+  "description": "Examining key events, figures, and trends of the era―including Charles Manson, the Black Panthers, and the shopping mall―through the lens of her own spiritual confusion, Joan Didion helped to define mass culture as we now understand it. Written with a commanding sureness of tone and linguistic precision, The White Album is a central text of American reportage and a classic of American autobiography.",
+  "price": 12.59,
+  "stock": 2656
+},{
+  "_id": "57bdfa1d-4fa5-4892-969e-2c1b4386f9b2",
+  "title": "The Road",
+  "author": "Cormac McCarthy",
+  "description": "The Road is a 2006 post-apocalyptic novel by American writer Cormac McCarthy. The book details the grueling journey of a father and his young son over a period of several months across a landscape blasted by an unspecified cataclysm that has destroyed industrial civilization and almost all life.",
+  "price": 12,
+  "stock": 26203
+},{
+  "_id": "dd78d3eb-01a5-4c46-a193-8b41487b8417",
+  "title": "No Country for Old Men",
+  "author": "Cormac McCarthy",
+  "description": "No Country for Old Men is a 2005 novel by American author Cormac McCarthy, who had originally written the story as a screenplay. The story occurs in the vicinity of the Mexico–United States border in 1980 and concerns an illegal drug deal gone awry in the Texas desert back country.",
+  "price": 10.99,
+  "stock": 9642
+}]
