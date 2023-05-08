@@ -60,3 +60,58 @@ async def add_book(book: Book = Body(...)):
     except DuplicateKeyError:
         # Handle duplicate key errors
         return {"error": "Duplicate key error."}
+
+#Updates book   
+@app.put("/books/{book_id}", response_description = "Update a pre-existing book")
+async def update_book(book_id: str) -> dict:
+    book = await collection.findOne({"_id": book_id})
+    if book:
+        db.collection.updateOne({ "_id": book_id }, {"$set": { "price": 19.95 } })
+    raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = f"Book with ID {book_id} not found")
+
+#Deletes book
+
+@app.delete("/books/{book_id}", response_description = "Delete a book")
+async def delete_book(book_id: str) -> dict:
+    book = await collection.findOne({"_id": book_id})
+    if book:
+        db.collection.deleteOne({"_id": book_id})
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {book_id} not found.")
+
+#finds book based on price, author, and title
+
+# @app.get("/search?title={}&author={}&min_price={}&max_price={}", response_description = "Finding book based of price range, title, and author")
+# async def search_books(book_id: str) -> dict:
+#     books = []
+#     async for book in collection.find("$or" [{"author": "Peter Attita"}, {}]):
+
+#Finding all the books
+@app.get("/all")
+async def find_all_books():
+    books = list(db.collection.aggregate([{"$match":{}}]))
+    return books
+
+#Top 5 authors based on the most amount of stock available
+@app.get("/author")
+async def best_authors():
+
+#this group each individual tuple or doc into a single list based on their total stock with their id being their author 
+# then organizes it in desending with the top 5 being the authors with the most amount of stock
+
+#-1 means that we're sorting via descending order
+    sorting = [{"$group":{"_id": "$author", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total stock", -1}}, {"$limit": 5}]
+    authors = list(db.collection.aggregate(sorting))
+    return authors
+
+#Top 5 best selling books based on how much stock is left (the lower the better selling)
+@app.get("/best")
+async def best_authors():
+
+#this group each individual tuple or doc into a single list based on their lowest amount of stock with their id being
+# their book title then organizes it in ascending with the top 5 being the title of the books that are the best sellers 
+# which are the ones with the lowest amount of stock
+
+#1 means that we're sorting via ascending order
+    sorting = [{"$group":{"_id": "$title", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total stock", 1}}, {"$limit": 5}]
+    bestSellers = list(db.collection.aggregate(sorting))
+    return bestSellers
