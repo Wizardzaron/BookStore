@@ -63,19 +63,21 @@ async def add_book(book: Book = Body(...)):
 
 #Updates book   
 @app.put("/books/{book_id}", response_description = "Update a pre-existing book")
-async def update_book(book_id: str) -> dict:
-    book = await collection.findOne({"_id": book_id})
+async def update_book(book_id: str):
+    book = await collection.find_one({"_id": book_id})
     if book:
-        db.collection.updateOne({ "_id": book_id }, {"$set": { "price": 19.95 } })
+        await collection.update_one({ "_id": book_id }, {"$set": { "price": 19.95 } })
+        return {"Update": "Successful"}
     raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = f"Book with ID {book_id} not found")
 
 #Deletes book
 
 @app.delete("/books/{book_id}", response_description = "Delete a book")
-async def delete_book(book_id: str) -> dict:
-    book = await collection.findOne({"_id": book_id})
+async def delete_book(book_id: str):
+    book = await collection.find_one({"_id": book_id})
     if book:
-        db.collection.deleteOne({"_id": book_id})
+        await collection.delete_one({"_id": book_id})
+        return {"Deletion": "Successful"}
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {book_id} not found.")
 
 #finds book based on price, author, and title
@@ -87,8 +89,12 @@ async def delete_book(book_id: str) -> dict:
 
 #Finding all the books
 @app.get("/all")
-async def find_all_books():
-    books = list(db.collection.aggregate([{"$match":{}}]))
+async def find_all_books() -> dict:
+
+
+    find = [{"$group": {"_id": "null", "numberOfBooks": {"$sum": 1}}}]
+
+    books = collection.aggregate(find)
     return books
 
 #Top 5 authors based on the most amount of stock available
@@ -99,9 +105,25 @@ async def best_authors():
 # then organizes it in desending with the top 5 being the authors with the most amount of stock
 
 #-1 means that we're sorting via descending order
-    sorting = [{"$group":{"_id": "$author", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total stock", -1}}, {"$limit": 5}]
-    authors = list(db.collection.aggregate(sorting))
+    sorting = [{"$group":{"_id": "$author", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total_stock", -1}}, {"$limit": 5}]
+
+    documents = []
+
+    hold = await collection.aggregate(sorting).to_list(None)
+
+    #transforms the set from mongodb to a list
+    async for document in hold:
+        try:
+            document = {k: list(v) if isinstance(v, set) else v for k, v in document.items()}
+            documents.append(document)
+        except TypeError:
+            continue
+
+    # async for authors in collection.aggregate(sorting):
+    #     return authors
+    authors = documents
     return authors
+    #raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work")
 
 #Top 5 best selling books based on how much stock is left (the lower the better selling)
 @app.get("/best")
@@ -112,6 +134,6 @@ async def best_authors():
 # which are the ones with the lowest amount of stock
 
 #1 means that we're sorting via ascending order
-    sorting = [{"$group":{"_id": "$title", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total stock", 1}}, {"$limit": 5}]
-    bestSellers = list(db.collection.aggregate(sorting))
+    sorting = [{"$group":{"_id": "$title", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total_stock", 1}}, {"$limit": 5}]
+    bestSellers = list(collection.aggregate(sorting))
     return bestSellers
