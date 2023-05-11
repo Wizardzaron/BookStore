@@ -21,7 +21,7 @@ try:
 except Exception as e:
     print(e)
 
-# Helper Function 
+# Helper Function For some API endpoints
 def book_helper(book) -> dict:
     return {
         "book_id": str(book["_id"]),
@@ -31,6 +31,8 @@ def book_helper(book) -> dict:
         "price": book["price"],
         "stock": book["stock"],
     }
+
+# MAIN API ENDPOINTS
 
 # Retrieves a list of all books in the store
 @app.get("/books", response_description="List all books")
@@ -61,7 +63,7 @@ async def add_book(book: Book = Body(...)):
         # Handle duplicate key errors
         return {"error": "Duplicate key error."}
 
-#Updates book   
+# Updates an existing book by ID   
 @app.put("/books/{book_id}", response_description = "Update a pre-existing book")
 async def update_book(book_id: str):
     book = await collection.find_one({"_id": book_id})
@@ -70,8 +72,7 @@ async def update_book(book_id: str):
         return {"Update": "Successful"}
     raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = f"Book with ID {book_id} not found")
 
-#Deletes book
-
+# Deletes a book from store by ID
 @app.delete("/books/{book_id}", response_description = "Delete a book")
 async def delete_book(book_id: str):
     book = await collection.find_one({"_id": book_id})
@@ -80,60 +81,57 @@ async def delete_book(book_id: str):
         return {"Deletion": "Successful"}
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {book_id} not found.")
 
-#finds book based on price, author, and title
+# Searches for books by title, author, and price range
+# TO COMPLETE
 
 # @app.get("/search?title={}&author={}&min_price={}&max_price={}", response_description = "Finding book based of price range, title, and author")
 # async def search_books(book_id: str) -> dict:
 #     books = []
 #     async for book in collection.find("$or" [{"author": "Peter Attita"}, {}]):
 
-#Finding all the books
-@app.get("/all")
-async def find_all_books() -> dict:
+# AGGREGATIONS
 
+# The total number of books in store
+@app.get("/total_number_books")
+async def total_number_books():
+    count = await collection.aggregate([{"$match": {}}, {"$group": {"_id": "null", "TotalNumberBooks": {"$sum": 1}}}]).to_list(length=None)
+    return count
 
-    find = [{"$group": {"_id": "null", "numberOfBooks": {"$sum": 1}}}]
+# Top 5 best selling books 
+# based on how much stock is left (the lower the better selling)
 
-    books = collection.aggregate(find)
-    return books
-
-#Top 5 authors based on the most amount of stock available
-@app.get("/author")
-async def best_authors():
-
-#this group each individual tuple or doc into a single list based on their total stock with their id being their author 
-# then organizes it in desending with the top 5 being the authors with the most amount of stock
-
-#-1 means that we're sorting via descending order
-    sorting = [{"$group":{"_id": "$author", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total_stock", -1}}, {"$limit": 5}]
-
-    documents = []
-
-    hold = await collection.aggregate(sorting).to_list(None)
-
-    #transforms the set from mongodb to a list
-    async for document in hold:
-        try:
-            document = {k: list(v) if isinstance(v, set) else v for k, v in document.items()}
-            documents.append(document)
-        except TypeError:
-            continue
-
-    # async for authors in collection.aggregate(sorting):
-    #     return authors
-    authors = documents
-    return authors
-    #raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work")
-
-#Top 5 best selling books based on how much stock is left (the lower the better selling)
-@app.get("/best")
-async def best_authors():
-
-#this group each individual tuple or doc into a single list based on their lowest amount of stock with their id being
+# this group each individual tuple or doc into a single list based on their lowest amount of stock with their id being
 # their book title then organizes it in ascending with the top 5 being the title of the books that are the best sellers 
 # which are the ones with the lowest amount of stock
 
 #1 means that we're sorting via ascending order
-    sorting = [{"$group":{"_id": "$title", "total_stock" : {"$sum": "$stock"}}}, {"$sort": {"total_stock", 1}}, {"$limit": 5}]
-    bestSellers = list(collection.aggregate(sorting))
-    return bestSellers
+@app.get("/bestselling_books")
+async def bestselling_books():
+    pipeline = [{"$group": {"_id": {"title": "$title"},"total_stock": { "$sum": "$stock" }}},
+                {"$sort": {"total_stock": 1 }},
+                {"$limit": 5}]
+    
+    books = []
+    async for doc in collection.aggregate(pipeline):
+        books.append(doc)
+    if books:
+        return books
+    raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work")
+
+#Top 5 authors based on the most amount of stock available
+# this group each individual tuple or doc into a single list based on their total stock with their id being their author 
+# then organizes it in desending with the top 5 being the authors with the most amount of stock
+
+#-1 means that we're sorting via descending order
+@app.get("/authors_most_books")
+async def authors_most_books():
+    pipeline = [{"$group": {"_id": {"author": "$author"},"total_stock": { "$sum": "$stock" }}},
+                {"$sort": {"total_stock": -1 }},
+                {"$limit": 5}]
+    
+    authors = []
+    async for doc in collection.aggregate(pipeline):
+        authors.append(doc)
+    if authors:
+        return authors
+    raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work")
