@@ -64,13 +64,21 @@ async def add_book(book: Book = Body(...)):
         return {"error": "Duplicate key error."}
 
 # Updates an existing book by ID   
-@app.put("/books/{book_id}", response_description = "Update a pre-existing book")
-async def update_book(book_id: str):
-    book = await collection.find_one({"_id": book_id})
-    if book:
-        await collection.update_one({ "_id": book_id }, {"$set": { "price": 19.95 } })
-        return {"Update": "Successful"}
-    raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = f"Book with ID {book_id} not found")
+@app.put("/books/{book_id}", response_description = "Update a pre-existing book", response_model=BookUpdate)
+async def update_book(book_id: str, book: BookUpdate = Body(...)):
+    book = { key: value for key, value in book.dict().items() if value is not None }
+
+    if len(book) >= 1:
+        update_result = await collection.update_one({"_id": book_id}, {"$set": book})
+
+        if update_result.modified_count == 1:
+            if (updated_book := await collection.find_one({"_id": book_id})) is not None:
+                return updated_book
+        
+    if (existing_book := await collection.find_one({"_id": book_id})) is not None:
+        return existing_book
+    
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {book_id} not found.")
 
 # Deletes a book from store by ID
 @app.delete("/books/{book_id}", response_description = "Delete a book")

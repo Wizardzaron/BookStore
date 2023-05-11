@@ -33,10 +33,10 @@ class BookUpdate(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "title": "Outlive: The Science and Art of Longevity",
-                "author": "Peter Attia",
-                "description": "A look at recent scientific research on aging and longevity.",
-                "price": 18.99,
-                "stock": 1289
+                "title": "I'm Glad My Mom Died",
+                "author": "Jennette McCurdy",
+                "description": "The actress and filmmaker describes her eating disorders and difficult relationship with her mother.",
+                "price": 125.99,
+                "stock": 49115
             }
         }
