@@ -126,7 +126,7 @@ async def bestselling_books():
         return books
     raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work")
 
-#Top 5 authors based on the most amount of stock available
+# Top 5 authors based on the most amount of stock available
 # this group each individual tuple or doc into a single list based on their total stock with their id being their author 
 # then organizes it in desending with the top 5 being the authors with the most amount of stock
 
