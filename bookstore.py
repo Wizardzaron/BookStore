@@ -90,12 +90,84 @@ async def delete_book(book_id: str):
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {book_id} not found.")
 
 # Searches for books by title, author, and price range
-# TO COMPLETE
+@app.get("/search_books")
+async def search_books(title: str | None = None, 
+                       author: str | None = None, 
+                       min_price: float | None = None, 
+                       max_price: float | None = None):
+    
+    print(f"Searching for book with title: {title}, author: {author}, min_price: {min_price}, max_price: {max_price}")
 
-# @app.get("/search?title={}&author={}&min_price={}&max_price={}", response_description = "Finding book based of price range, title, and author")
-# async def search_books(book_id: str) -> dict:
-#     books = []
-#     async for book in collection.find("$or" [{"author": "Peter Attita"}, {}]):
+    # USER DID NOT INPUT ANYTHING, RETURN NOTHING
+    if (title is None) and (author is None) and (min_price is None) and (max_price is None):
+        return {"Search for books by title, author, and/or price range.", "No Seach Parameters Given."}
+
+    # Combination Size ONE (SHOULD BE 4 Combinations)
+    if (title is not None) and (author is None) and (min_price is None) and (max_price is None):
+        print("USING COMBINATION SIZE ONE")
+        return await collection.find({"title": title}).to_list(length=None)
+    if (author is not None) and (title is None) and (min_price is None) and (max_price is None):
+        print("USING COMBINATION SIZE ONE")
+        return await collection.find({"author": author}).to_list(length=None)
+    if (min_price is not None) and (title is None) and (author is None) and (max_price is None):
+        print("USING COMBINATION SIZE ONE")
+        return await collection.find({"price": { "$gt": min_price } }).to_list(length=None)
+    if (max_price is not None) and (title is None) and (author is None) and (min_price is None):
+        print("USING COMBINATION SIZE ONE")
+        return await collection.find({"price": { "$lt": max_price } }).to_list(length=None)
+
+    
+    # Combination Size TWO (SHOULD BE 6 Combinations)
+    if None not in (title, author):
+        print("USING COMBINATION SIZE TWO")
+        pipeline = [ {"$match": { "$and": [{ "title": title }, { "author": author }] } }]
+    elif None not in (title, min_price):
+        print("USING COMBINATION SIZE TWO")
+        pipeline = [ {"$match": { "$and": [{ "title": title }, { "price": { "$gt": min_price } }] } }]
+    elif None not in (title, max_price):
+        print("USING COMBINATION SIZE TWO")
+        pipeline = [ {"$match": { "$and": [{ "title": title }, { "price": { "$lt": max_price } }] } }]
+    elif None not in (author, min_price):
+        print("USING COMBINATION SIZE TWO")
+        pipeline = [ {"$match": { "$and": [{ "author": author }, { "price": { "$gt": min_price} }] } }] 
+    elif None not in (author, max_price):
+        print("USING COMBINATION SIZE TWO")
+        pipeline = [ {"$match": { "$and": [{ "author": author }, { "price": { "$lt": max_price } }] } }]
+    elif None not in (min_price, max_price):
+        print("USING COMBINATION SIZE TWO")
+        pipeline = [ {"$match": { "$and": [{ "price": { "$gt": min_price, "$lt": max_price } }] } }]
+
+    
+    # Combination Size THREE (SHOULD BE 4 Combinations)
+    if None not in (title, author, min_price):
+        print("USING COMBINATION SIZE THREE")
+        pipeline = [ {"$match": { "$and": [{ "title": title }, { "author": author }, { "price": { "$gt": min_price } }] } }]
+    elif None not in (title, author, max_price):
+        print("USING COMBINATION SIZE THREE")
+        pipeline = [ {"$match": { "$and": [{ "title": title }, { "author": author }, { "price": { "$lt": max_price } }] } }]
+    elif None not in (title, min_price, max_price):
+        print("USING COMBINATION SIZE THREE")
+        pipeline = [ {"$match": { "$and": [{ "title": title }, { "price": { "$gt": min_price, "$lt": max_price } }] } }]
+    elif None not in (author, min_price, max_price):
+        print("USING COMBINATION SIZE THREE")
+        pipeline = [ {"$match": { "$and": [{ "author": author }, { "price": { "$gt": min_price, "$lt": max_price } }] } }]
+
+
+    
+    # Combination Size FOUR (SHOULD BE 1 Combination)
+    if None not in (title, author, min_price, max_price):
+        print("USING COMBINATION SIZE FOUR")
+        pipeline = [ {"$match": { "$and": [{ "title": title }, { "author": author }, { "price": { "$gt": min_price, "$lt": max_price } }] } }]
+
+
+    books = []
+    async for doc in collection.aggregate(pipeline):
+        books.append(doc)
+    if books:
+        return books
+    raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work or No book found with current search queries")
+
+
 
 # AGGREGATIONS
 
