@@ -86,7 +86,7 @@ async def delete_book(book_id: str):
     book = await collection.find_one({"_id": book_id})
     if book:
         await collection.delete_one({"_id": book_id})
-        return {"Deletion": "Successful"}
+        return f"Book with ID: {book_id} removed. Book deleted successfully."
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {book_id} not found.")
 
 # Searches for books by title, author, and price range
