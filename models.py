@@ -19,7 +19,7 @@ class Book(BaseModel):
                 "author": "Peter Attia",
                 "description": "A look at recent scientific research on aging and longevity.",
                 "price": 18.99,
-                "stock": 0
+                "stock": 1506
             }
         }
 
@@ -33,10 +33,6 @@ class BookUpdate(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "title": "Outlive: The Science and Art of Longevity",
-                "author": "Peter Attia",
-                "description": "A look at recent scientific research on aging and longevity.",
-                "price": 18.99,
-                "stock": 1289
+                "price": 125.99
             }
         }
