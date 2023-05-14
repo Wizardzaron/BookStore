@@ -221,3 +221,17 @@ async def authors_most_books():
     if authors:
         return authors
     raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work")
+
+# Top 5 authors based on the most amount of unique books available
+@app.get("/authors_most_unique_books")
+async def authors_most_unique_books():
+    pipeline = [{"$group": {"_id": {"author": "$author"},"total_count": { "$sum": 1 }}},
+                {"$sort": {"total_count": -1 }},
+                {"$limit": 5}]
+    
+    authors = []
+    async for doc in collection.aggregate(pipeline):
+        authors.append(doc)
+    if authors:
+        return authors
+    raise HTTPException(status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail=f"Method didn't work")
