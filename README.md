@@ -13,9 +13,15 @@ Tech Stack
 
 # Get Started
 
+Clone the Project
+```shell
+git clone https://github.com/Wizardzaron/BookStore.git
+cd BookStore/
+```
+
 Create an environment
 ```shell
-# macOS/Linux
+# Linux
 python3 -m venv .venv
 
 # Windows
@@ -25,7 +31,7 @@ py -3 -m venv .venv
 
 Activate the environment
 ```shell
-# macOS/Linux
+# Linux
 . .venv/bin/activate
 
 # Windows
