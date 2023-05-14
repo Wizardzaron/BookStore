@@ -34,4 +34,39 @@ uuid.uuid4()
 4. select `books.json` file found within this repo.
 4. `Import`
 
+
+**Example Evaluating Index Usage within `mongosh`**
+
+Open Terminal
+```bash
+mongosh
+use bookstore
+
+db.books.find({price: {$gt: 20}}).explain("executionStats")
+
+```
+
+stage: `COLLSCAN` will change to  `IXSCAN` if index is being used.
+
+You can view index names using the `db.collection.getIndexes()` method within mongosh. 
+
+Open Terminal
+
+```shell
+mongosh
+use bookstore
+db.books.getIndexes()
+```
+
+Alternatively, you can view the indexes with MongoDB Compass under the `Indexes` tab.
+
+Test Query within `Explain Plan` Tab in MongoDB Compass
+```
+# test 1
+{ "title": "As I Lay Dying" }
+
+# test 2
+{ price: {$gt: 15} }
+```
+
 ## Ryan

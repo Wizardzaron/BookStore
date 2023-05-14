@@ -21,6 +21,49 @@ try:
 except Exception as e:
     print(e)
 
+# CREATE INDEXES ON STARTUP
+@app.on_event("startup")
+async def startup():
+    
+    print("Creating Indexes...")
+    # Indexes will only be created if they do not already exist.
+
+    
+    # MongoDB can use the index for queries on the following fields:
+    
+    # Single Field Indexes - order does not matter for single indexes
+    
+    # price 
+    await collection.create_index([("price", 1)],background=True)
+    
+    # stock 
+    await collection.create_index([("stock", 1)],background=True)
+
+
+    # Compound Indexes - use ESR (Equality, Sort, Range) Rule
+
+    # title (descending)
+    # title (descending) and stock  
+    await collection.create_index([("title", -1), ("stock", 1)], background=True)
+    
+    # author 
+    # author and stock (descending)  
+    await collection.create_index([("author", 1), ("stock", -1)], background=True)
+
+    # author 
+    # author and price (descending)  
+    await collection.create_index([("author", 1), ("price", -1)], background=True)
+
+    # title
+    # title and author
+    # title and author and price (ascending, descending)
+    await collection.create_index([("title", 1), ("author", 1), ("price", 1)], background=True)
+    await collection.create_index([("title", 1), ("author", 1), ("price", -1)], background=True)
+
+    print("Done.")
+   
+
+
 # Helper Function For some API endpoints
 def book_helper(book) -> dict:
     return {
