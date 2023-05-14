@@ -10,6 +10,7 @@ pip freeze > requirements.txt
 
 Sample DataSet Resources:
 - [2023 Hardcover Nonfiction Best Sellers](https://www.nytimes.com/books/best-sellers/2023/04/23/hardcover-nonfiction/)
+- [2021 Best Book Winners](https://www.nytimes.com/interactive/2021/12/28/books/best-book-winners.html)
 
 > Note: I used ratings count on Amazon for `stock` values.
 

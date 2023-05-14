@@ -171,10 +171,16 @@ async def search_books(title: str | None = None,
 
 # AGGREGATIONS
 
-# The total number of books in store
+# The total number of (unique) books in store
 @app.get("/total_number_books")
 async def total_number_books():
     count = await collection.aggregate([{"$match": {}}, {"$group": {"_id": "null", "TotalNumberBooks": {"$sum": 1}}}]).to_list(length=None)
+    return count
+
+# The total number of books (based on stock) in store
+@app.get("/total_number_stock")
+async def total_number_stock():
+    count = await collection.aggregate([{"$match": {}}, {"$group": {"_id": "null", "TotalNumberStock": {"$sum": "$stock"}}}]).to_list(length=None)
     return count
 
 # Top 5 best selling books 
